@@ -1,38 +1,132 @@
 .App {
   text-align: center;
+  position: relative;
+  overflow-x: hidden;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.sound-toggle {
+  z-index: 100;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.tooth-character {
+  display: inline-block;
+  transition: all 0.3s ease;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.battle-arena {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 20px 0;
+}
+
+.battle-character {
+  text-align: center;
+  flex: 1;
+}
+
+.battle-vs {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #ff4081;
+  margin: 0 20px;
+}
+
+.visual-novel-container {
   display: flex;
   flex-direction: column;
   align-items: center;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.character-portrait {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 5px solid #ffb6c1;
+  box-shadow: 0 4px 15px rgba(255, 182, 193, 0.4);
+  margin-bottom: 20px;
+}
+
+.dialogue-container {
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 20px;
+  padding: 20px;
+  box-shadow: 0 8px 32px rgba(255, 182, 193, 0.2);
+  border: 2px solid #ffb6c1;
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.dialogue-container:before {
+  content: '';
+  position: absolute;
+  top: -15px;
+  left: 30px;
+  border-width: 0 15px 15px;
+  border-style: solid;
+  border-color: #ffb6c1 transparent;
+}
+
+.character-name {
+  font-family: 'Comic Neue', cursive;
+  font-weight: bold;
+  color: #ff4081;
+  margin-bottom: 10px;
+  font-size: 1.2rem;
+}
+
+.dialogue-text {
+  font-family: 'Quicksand', sans-serif;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.controls {
+  display: flex;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  gap: 10px;
+  margin-top: 20px;
 }
 
-.App-link {
-  color: #61dafb;
+.game-over {
+  background-color: rgba(255, 152, 0, 0.2);
+  border: 2px solid #ff9800;
+  border-radius: 15px;
+  padding: 15px;
+  margin: 20px 0;
+  color: #e65100;
+  font-weight: bold;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.victory {
+  background-color: rgba(76, 175, 80, 0.2);
+  border: 2px solid #4caf50;
+  border-radius: 15px;
+  padding: 15px;
+  margin: 20px 0;
+  color: #2e7d32;
+  font-weight: bold;
+}
+
+@media (max-width: 768px) {
+  .battle-arena {
+    flex-direction: column;
   }
-  to {
-    transform: rotate(360deg);
+  
+  .battle-vs {
+    margin: 20px 0;
+  }
+  
+  .visual-novel-container {
+    padding: 0 10px;
+  }
+  
+  .character-portrait {
+    width: 150px;
+    height: 150px;
   }
 }
