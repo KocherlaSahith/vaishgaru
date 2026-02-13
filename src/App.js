@@ -94,6 +94,8 @@ function App() {
         setBattleMessage("Dentist Senpai arrived! Tooth fully recovered! Rasmalai defeated! 🦷✨");
         playSound('victory');
         break;
+      default:
+        break;
     }
   };
 
