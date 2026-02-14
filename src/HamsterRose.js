@@ -9,6 +9,8 @@ const HamsterRose = () => {
   const [candyCount, setCandyCount] = useState(0);
   const [sparkles, setSparkles] = useState([]);
   const [currentGift, setCurrentGift] = useState('rose');
+  const [surpriseMode, setSurpriseMode] = useState(false);
+  const [showSurpriseMessage, setShowSurpriseMessage] = useState(false);
 
   useEffect(() => {
     // Generate random sparkles
@@ -30,29 +32,30 @@ const HamsterRose = () => {
     return () => clearInterval(interval);
   }, []);
 
-  const handleGiveGift = () => {
+  const handleSurprise = () => {
     setIsAnimating(true);
+    setSurpriseMode(true);
     
-    switch (currentGift) {
-      case 'rose':
-        setRoseCount(prev => Math.min(prev + 1, 12)); // Max 12 roses in bouquet
-        break;
-      case 'heart':
-        setHeartCount(prev => Math.min(prev + 1, 8)); // Max 8 hearts
-        break;
-      case 'star':
-        setStarCount(prev => Math.min(prev + 1, 10)); // Max 10 stars
-        break;
-      case 'candy':
-        setCandyCount(prev => Math.min(prev + 1, 6)); // Max 6 candies
-        break;
-      default:
-        break;
-    }
+    // Add random gifts
+    const randomRoses = Math.floor(Math.random() * 5) + 3; // 3-7 roses
+    const randomHearts = Math.floor(Math.random() * 4) + 2; // 2-5 hearts
+    const randomStars = Math.floor(Math.random() * 5) + 2; // 2-6 stars
+    const randomCandies = Math.floor(Math.random() * 3) + 1; // 1-3 candies
+    
+    setRoseCount(randomRoses);
+    setHeartCount(randomHearts);
+    setStarCount(randomStars);
+    setCandyCount(randomCandies);
     
     setTimeout(() => {
       setIsAnimating(false);
-    }, 1000);
+      setShowSurpriseMessage(true);
+      
+      // Hide surprise message after 3 seconds
+      setTimeout(() => {
+        setShowSurpriseMessage(false);
+      }, 3000);
+    }, 1500);
   };
 
   const handleReset = () => {
@@ -61,6 +64,8 @@ const HamsterRose = () => {
     setStarCount(0);
     setCandyCount(0);
     setIsAnimating(false);
+    setSurpriseMode(false);
+    setShowSurpriseMessage(false);
   };
 
   return (
@@ -188,57 +193,30 @@ const HamsterRose = () => {
         </div>
       </div>
       
-      {/* Gift Selection */}
-      <div className="gift-selection">
-        <button
-          className={`gift-button ${currentGift === 'rose' ? 'active' : ''}`}
-          onClick={() => setCurrentGift('rose')}
-        >
-          🌹 Roses
-        </button>
-        <button
-          className={`gift-button ${currentGift === 'heart' ? 'active' : ''}`}
-          onClick={() => setCurrentGift('heart')}
-        >
-          💖 Hearts
-        </button>
-        <button
-          className={`gift-button ${currentGift === 'star' ? 'active' : ''}`}
-          onClick={() => setCurrentGift('star')}
-        >
-          ⭐ Stars
-        </button>
-        <button
-          className={`gift-button ${currentGift === 'candy' ? 'active' : ''}`}
-          onClick={() => setCurrentGift('candy')}
-        >
-          🍬 Candies
+      {/* Surprise Button */}
+      <div className="surprise-container">
+        <button className="surprise-button" onClick={handleSurprise}>
+          🎁 Click for a Surprise!
         </button>
       </div>
       
       {/* Controls */}
       <div className="controls">
-        <button className="gift-button-action" onClick={handleGiveGift}>
-          Give {currentGift === 'rose' ? '🌹 Rose' :
-                currentGift === 'heart' ? '💖 Heart' :
-                currentGift === 'star' ? '⭐ Star' : '🍬 Candy'}
-        </button>
         <button className="reset-button" onClick={handleReset}>
           🔄 Reset
         </button>
       </div>
       
-      {/* Counters */}
-      <div className="counters">
-        <div className="counter">🌹 {roseCount}/12</div>
-        <div className="counter">💖 {heartCount}/8</div>
-        <div className="counter">⭐ {starCount}/10</div>
-        <div className="counter">🍬 {candyCount}/6</div>
-      </div>
+      {/* Surprise Message */}
+      {showSurpriseMessage && (
+        <div className="surprise-message fade-in">
+          <p>🎉 Wow! The hamster surprised you with amazing gifts! 🎉</p>
+        </div>
+      )}
       
       {/* Message */}
       <div className="message">
-        <p>A cute hamster wants to give you gifts! 🐹💕</p>
+        <p>{surpriseMode ? 'Look at all these wonderful gifts! 🐹💕' : 'Click the surprise button for something magical! ✨'}</p>
       </div>
     </div>
   );

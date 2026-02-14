@@ -11,8 +11,8 @@ const HamsterRosePage = ({ onBackToMain }) => {
         >
           ← Back to Game
         </button>
-        <h1 className="page-title">Hamster's Rose Garden 🐹🌹</h1>
-        <p className="page-subtitle">Watch the adorable hamster give you beautiful roses!</p>
+        <h1 className="page-title">Hamster's Surprise Garden 🐹🎁</h1>
+        <p className="page-subtitle">Click the surprise button for a magical experience!</p>
       </div>
       
       <HamsterRose />

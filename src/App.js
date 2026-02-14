@@ -160,7 +160,7 @@ function App() {
           onClick={() => setShowHamsterPage(true)}
           style={{ backgroundColor: '#f8bbd0' }}
         >
-          🐹🌹 Hamster Roses
+          🐹🎁 Hamster Surprise
         </button>
       </div>
 
