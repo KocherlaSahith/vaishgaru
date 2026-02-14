@@ -8,7 +8,6 @@ const HamsterRose = () => {
   const [starCount, setStarCount] = useState(0);
   const [candyCount, setCandyCount] = useState(0);
   const [sparkles, setSparkles] = useState([]);
-  const [currentGift, setCurrentGift] = useState('rose');
   const [surpriseMode, setSurpriseMode] = useState(false);
   const [showSurpriseMessage, setShowSurpriseMessage] = useState(false);
 
