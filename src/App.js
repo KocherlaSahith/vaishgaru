@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
+import HamsterRosePage from './HamsterRosePage';
 
 function App() {
   const [currentSection, setCurrentSection] = useState(1);
+  const [showHamsterPage, setShowHamsterPage] = useState(false);
   const [toothExpression, setToothExpression] = useState('neutral');
   const [dialogueMessage, setDialogueMessage] = useState('');
   const [toothHP, setToothHP] = useState(100);
@@ -135,15 +137,30 @@ function App() {
     }
   };
 
+  if (showHamsterPage) {
+    return <HamsterRosePage onBackToMain={() => setShowHamsterPage(false)} />;
+  }
+
   return (
     <div className="App pastel-bg">
       {/* Sound Toggle */}
       <div className="sound-toggle" style={{ position: 'absolute', top: '20px', right: '20px' }}>
-        <button 
-          className="pastel-button" 
+        <button
+          className="pastel-button"
           onClick={() => setSoundEnabled(!soundEnabled)}
         >
           {soundEnabled ? '🔊' : '🔇'}
+        </button>
+      </div>
+
+      {/* Navigation to Hamster Page */}
+      <div className="nav-toggle" style={{ position: 'absolute', top: '20px', left: '20px' }}>
+        <button
+          className="pastel-button"
+          onClick={() => setShowHamsterPage(true)}
+          style={{ backgroundColor: '#f8bbd0' }}
+        >
+          🐹🌹 Hamster Roses
         </button>
       </div>
 
